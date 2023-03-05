@@ -42,3 +42,7 @@ h6 {
 svg {
   fill: inherit;
 }
+
+svg > path {
+  stroke: inherit;
+}

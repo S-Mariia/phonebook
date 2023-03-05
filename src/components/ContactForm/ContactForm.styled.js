@@ -42,6 +42,12 @@ export const ClearButton = styled.button`
   margin-left: -42px;
   height: 36px;
   border: none;
+  color: #2a2a2a;
+  transition: color 250ms linear;
+
+  &:hover {
+    color: rgb(158, 44, 44);
+  }
 `;
 
 export const Wrap = styled.div`

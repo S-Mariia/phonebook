@@ -36,6 +36,7 @@ export const Btn = styled.button`
   padding-top: 3px;
   padding-bottom: 3px;
   fill: #2a2a2a;
+  transition: fill 250ms linear;
 
   background-color: transparent;
   border: none;
