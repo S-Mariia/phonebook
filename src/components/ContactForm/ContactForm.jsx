@@ -11,7 +11,7 @@ import { selectContacts } from 'redux/contacts/contacts-selectors';
 
 import { addContact } from 'redux/contacts/contacts-operations';
 
-export const ContactForm = () => {
+const ContactForm = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
 
@@ -94,7 +94,9 @@ export const ContactForm = () => {
           required
         />
       </Label>
-      <Button type="submit">Add contact</Button>
+      <Button type="submit">{'Add contact'}</Button>
     </Form>
   );
 };
+
+export default ContactForm;

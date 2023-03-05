@@ -6,7 +6,7 @@ import { MdDelete } from 'react-icons/md';
 
 import { Tr, Td, Btn } from './ContactItem.styled';
 
-export const ContactItem = ({ item: { id, name, phone } }) => {
+const ContactItem = ({ item: { id, name, phone } }) => {
   const dispatch = useDispatch();
   return (
     <Tr>
@@ -26,3 +26,5 @@ export const ContactItem = ({ item: { id, name, phone } }) => {
     </Tr>
   );
 };
+
+export default ContactItem;

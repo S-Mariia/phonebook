@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { ContactItem } from 'components/ContactItem/ContactItem';
+import ContactItem from 'components/ContactItem/ContactItem';
+import Loader from 'components/Loader/Loader';
 import { Table } from './ContactList.styled';
 
 import {
@@ -12,7 +13,7 @@ import { selectFilteredContacts } from 'redux/filter/filter-selectors';
 
 import { fetchContacts } from 'redux/contacts/contacts-operations';
 
-export const ContactList = () => {
+const ContactList = () => {
   const dispatch = useDispatch();
   const filteredContacts = useSelector(selectFilteredContacts);
   const isLoading = useSelector(selectIsLoading);
@@ -24,7 +25,7 @@ export const ContactList = () => {
 
   return (
     <>
-      {isLoading && <p>Loading...</p>}
+      {isLoading && <Loader />}
       {error !== null && <p>{error}</p>}
 
       <Table>
@@ -37,3 +38,5 @@ export const ContactList = () => {
     </>
   );
 };
+
+export default ContactList;

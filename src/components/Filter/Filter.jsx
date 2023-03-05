@@ -4,7 +4,7 @@ import { selectFilter } from 'redux/filter/filter-selectors';
 
 import { Paragraph, Input } from './Filter.styled';
 
-export const Filter = () => {
+const Filter = () => {
   const filterValue = useSelector(selectFilter);
   const dispatch = useDispatch();
 
@@ -21,3 +21,5 @@ export const Filter = () => {
     </>
   );
 };
+
+export default Filter;
