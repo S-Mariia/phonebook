@@ -90,7 +90,7 @@ const ContactForm = () => {
           <ClearButton
             type="button"
             onClick={() => {
-              console.log('Click');
+              setState(prevState => ({ ...prevState, name: '' }));
             }}
           >
             <GrClose size={20} />
@@ -122,7 +122,7 @@ const ContactForm = () => {
           <ClearButton
             type="button"
             onClick={() => {
-              console.log('Click');
+              setState(prevState => ({ ...prevState, phone: '' }));
             }}
           >
             <GrClose size={20} />
