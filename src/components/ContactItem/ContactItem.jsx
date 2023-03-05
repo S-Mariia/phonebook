@@ -1,25 +1,42 @@
-import { useDispatch } from 'react-redux';
+import { useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { deleteContact } from 'redux/contacts/contacts-operations';
+import { selectIsDeletingLoading } from 'redux/contacts/contacts-selectors';
 
 import { IconContext } from 'react-icons';
 import { MdDelete } from 'react-icons/md';
+
+import Loader from 'components/Loader/Loader';
 
 import { Tr, Td, Btn } from './ContactItem.styled';
 
 const ContactItem = ({ item: { id, name, phone } }) => {
   const dispatch = useDispatch();
+  const isLoading = useSelector(selectIsDeletingLoading);
+  const deletedId = useRef(null);
+
   return (
     <Tr>
       <Td>{name}</Td>
       <Td>{phone}</Td>
       <Td>
-        <Btn onClick={() => dispatch(deleteContact(id))} type="button">
+        <Btn
+          onClick={() => {
+            deletedId.current = id;
+            dispatch(deleteContact(id));
+          }}
+          type="button"
+        >
           <IconContext.Provider
             value={{
               size: 20,
             }}
           >
-            <MdDelete />
+            {isLoading && deletedId.current === id ? (
+              <Loader size={30} />
+            ) : (
+              <MdDelete />
+            )}
           </IconContext.Provider>
         </Btn>
       </Td>
