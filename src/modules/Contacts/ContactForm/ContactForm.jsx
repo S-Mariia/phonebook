@@ -6,7 +6,7 @@ import { IoMdPerson } from 'react-icons/io';
 import { BsTelephoneFill } from 'react-icons/bs';
 import { GrClose } from 'react-icons/gr';
 
-import Loader from 'components/Loader/Loader';
+import Loader from 'shared/components/Loader/Loader';
 import {
   Form,
   Label,

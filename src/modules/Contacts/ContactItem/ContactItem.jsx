@@ -6,7 +6,7 @@ import { selectIsDeletingLoading } from 'redux/contacts/contacts-selectors';
 import { IconContext } from 'react-icons';
 import { MdDelete } from 'react-icons/md';
 
-import Loader from 'components/Loader/Loader';
+import Loader from 'shared/components/Loader/Loader';
 
 import { Tr, Td, Btn } from './ContactItem.styled';
 

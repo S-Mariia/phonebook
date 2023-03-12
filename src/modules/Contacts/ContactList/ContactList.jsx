@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import ContactItem from 'components/ContactItem/ContactItem';
-import Loader from 'components/Loader/Loader';
+import ContactItem from 'modules/Contacts/ContactItem/ContactItem';
+import Loader from 'shared/components/Loader/Loader';
 import { Table } from './ContactList.styled';
 
 import {

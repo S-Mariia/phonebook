@@ -1,13 +1,12 @@
-import ContactList from './ContactList/ContactList';
 import ContactForm from './ContactForm/ContactForm';
+import ContactList from './ContactList/ContactList';
 import Filter from './Filter/Filter';
 
-import { MainTitle, Title } from './App.styled';
+import { Title } from './Contacts.styled';
 
-export const App = () => {
+const Contacts = () => {
   return (
     <>
-      <MainTitle>Phonebook</MainTitle>
       <ContactForm />
 
       <Title>Contacts</Title>
@@ -16,3 +15,5 @@ export const App = () => {
     </>
   );
 };
+
+export default Contacts;
