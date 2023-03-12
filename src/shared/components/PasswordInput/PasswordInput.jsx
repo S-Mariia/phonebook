@@ -3,6 +3,7 @@ import { nanoid } from 'nanoid';
 import { BiShow } from 'react-icons/bi';
 
 import { Input, Label } from '../TextField/TextField.styled';
+import { Wrap } from './PasswordInput.styled';
 
 const PasswordInput = ({ label, handleChange, ...props }) => {
   const id = useMemo(() => nanoid(), []);
@@ -12,13 +13,15 @@ const PasswordInput = ({ label, handleChange, ...props }) => {
   return (
     <div>
       <Label htmlFor={id}>{label}</Label>
-      <Input
-        id={id}
-        onChange={handleChange}
-        type={shownPassword ? 'text' : 'password'}
-        {...props}
-      />
-      <BiShow size={20} onClick={handleClick} />
+      <Wrap>
+        <Input
+          id={id}
+          onChange={handleChange}
+          type={shownPassword ? 'text' : 'password'}
+          {...props}
+        />
+        <BiShow size={20} style={{ marginLeft: -30 }} onClick={handleClick} />
+      </Wrap>
     </div>
   );
 };
