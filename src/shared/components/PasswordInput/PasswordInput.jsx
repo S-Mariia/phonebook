@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { nanoid } from 'nanoid';
 import { BiShow } from 'react-icons/bi';
 
-import { Input, Label } from '../TextField/TextField.styled';
+import { Input, Label, InputContainer } from '../TextField/TextField.styled';
 import { Wrap } from './PasswordInput.styled';
 
 const PasswordInput = ({ label, handleChange, ...props }) => {
@@ -11,7 +11,7 @@ const PasswordInput = ({ label, handleChange, ...props }) => {
   const handleClick = () => setShownPassword(prevState => !prevState);
 
   return (
-    <div>
+    <InputContainer>
       <Label htmlFor={id}>{label}</Label>
       <Wrap>
         <Input
@@ -20,9 +20,13 @@ const PasswordInput = ({ label, handleChange, ...props }) => {
           type={shownPassword ? 'text' : 'password'}
           {...props}
         />
-        <BiShow size={20} style={{ marginLeft: -30 }} onClick={handleClick} />
+        <BiShow
+          size={20}
+          style={{ marginLeft: -30, cursor: 'pointer' }}
+          onClick={handleClick}
+        />
       </Wrap>
-    </div>
+    </InputContainer>
   );
 };
 

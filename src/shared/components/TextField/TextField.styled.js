@@ -15,4 +15,9 @@ export const Input = styled.input`
 export const Label = styled.label`
   font-weight: 500;
   display: block;
+  margin-bottom: 8px;
+`;
+
+export const InputContainer = styled.div`
+  margin-bottom: 12px;
 `;

@@ -1,16 +1,16 @@
 import { useMemo } from 'react';
 import { nanoid } from 'nanoid';
 
-import { Input, Label } from './TextField.styled';
+import { Input, Label, InputContainer } from './TextField.styled';
 
 const TextField = ({ label, handleChange, ...props }) => {
   const id = useMemo(() => nanoid(), []);
 
   return (
-    <div>
+    <InputContainer>
       <Label htmlFor={id}>{label}</Label>
       <Input id={id} onChange={handleChange} {...props} />
-    </div>
+    </InputContainer>
   );
 };
 
