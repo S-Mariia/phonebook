@@ -1,20 +1,13 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { IconContext } from 'react-icons';
 import { IoMdPerson } from 'react-icons/io';
 import { BsTelephoneFill } from 'react-icons/bs';
 import { GrClose } from 'react-icons/gr';
 
+import Button from 'shared/components/Button/Button';
 import Loader from 'shared/components/Loader/Loader';
-import {
-  Form,
-  Label,
-  Input,
-  Button,
-  Wrap,
-  ClearButton,
-} from './ContactForm.styled';
+import { Form, Wrap, ClearButton } from './ContactForm.styled';
 
 import {
   selectContacts,
@@ -22,6 +15,7 @@ import {
 } from 'redux/contacts/contacts-selectors';
 
 import { addContact } from 'redux/contacts/contacts-operations';
+import TextField from 'shared/components/TextField/TextField';
 
 const ContactForm = () => {
   const dispatch = useDispatch();
@@ -65,70 +59,59 @@ const ContactForm = () => {
 
   return (
     <Form onSubmit={handleFormSubmit}>
-      <Label>
-        <Wrap>
-          <IconContext.Provider
-            value={{
-              size: 20,
-            }}
-          >
-            <IoMdPerson />
-          </IconContext.Provider>
-          Name
-        </Wrap>
-        <Wrap>
-          <Input
-            onChange={handleInputChange}
-            type="text"
-            name="name"
-            value={state.name}
-            placeholder="Enter name"
-            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-            required
-          />
-          <ClearButton
-            type="button"
-            onClick={() => {
-              setState(prevState => ({ ...prevState, name: '' }));
-            }}
-          >
-            <GrClose size={20} />
-          </ClearButton>
-        </Wrap>
-      </Label>
-      <Label>
-        <Wrap>
-          <IconContext.Provider
-            value={{
-              size: 20,
-            }}
-          >
-            <BsTelephoneFill />
-          </IconContext.Provider>
-          Phone
-        </Wrap>
-        <Wrap>
-          <Input
-            onChange={handleInputChange}
-            type="tel"
-            name="phone"
-            value={state.phone}
-            placeholder="Enter phone number"
-            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-            required
-          />
-          <ClearButton
-            type="button"
-            onClick={() => {
-              setState(prevState => ({ ...prevState, phone: '' }));
-            }}
-          >
-            <GrClose size={20} />
-          </ClearButton>
-        </Wrap>
-      </Label>
+      <Wrap>
+        <TextField
+          label={
+            <Wrap>
+              <IoMdPerson size={20} />
+              Name
+            </Wrap>
+          }
+          handleChange={handleInputChange}
+          type="text"
+          name="name"
+          value={state.name}
+          placeholder="Enter name"
+          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+          required
+        />
+        <ClearButton
+          type="button"
+          onClick={() => {
+            setState(prevState => ({ ...prevState, name: '' }));
+          }}
+        >
+          <GrClose size={20} />
+        </ClearButton>
+      </Wrap>
+
+      <Wrap>
+        <TextField
+          label={
+            <Wrap>
+              <BsTelephoneFill size={20} />
+              Phone
+            </Wrap>
+          }
+          handleChange={handleInputChange}
+          type="tel"
+          name="phone"
+          value={state.phone}
+          placeholder="Enter phone number"
+          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+          required
+        />
+        <ClearButton
+          type="button"
+          onClick={() => {
+            setState(prevState => ({ ...prevState, phone: '' }));
+          }}
+        >
+          <GrClose size={20} />
+        </ClearButton>
+      </Wrap>
       <Button type="submit">
         Add contact
         {isLoading && <Loader size={30} shift="175" />}
