@@ -7,7 +7,7 @@ import Button from 'shared/components/Button/Button';
 import fields from './fields';
 import initialState from './initialState';
 
-const SignUpForm = ({ onSubmit }) => {
+const LoginForm = ({ onSubmit }) => {
   const [state, setState] = useState({ ...initialState });
 
   const handleChange = evt => {
@@ -20,21 +20,14 @@ const SignUpForm = ({ onSubmit }) => {
 
   const handleSubmit = evt => {
     evt.preventDefault();
+    console.log('login');
 
-    if (state.password !== state.confirmedPassword) {
-      alert('The password is incorrect');
-      setState(prevState => ({ ...prevState, confirmedPassword: '' }));
-      return;
-    }
-
-    const { name, email, password } = state;
-    onSubmit({ name, email, password });
+    onSubmit({ ...state });
     setState({ ...initialState });
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <TextField onChange={handleChange} value={state.name} {...fields.name} />
       <TextField
         onChange={handleChange}
         value={state.email}
@@ -45,14 +38,9 @@ const SignUpForm = ({ onSubmit }) => {
         value={state.password}
         {...fields.password}
       />
-      <PasswordInput
-        onChange={handleChange}
-        value={state.confirmedPassword}
-        {...fields.confirmedPassword}
-      />
       <Button type="submit">Sign up</Button>
     </form>
   );
 };
 
-export default SignUpForm;
+export default LoginForm;

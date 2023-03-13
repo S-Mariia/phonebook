@@ -67,7 +67,7 @@ const ContactForm = () => {
               Name
             </Wrap>
           }
-          handleChange={handleInputChange}
+          onChange={handleInputChange}
           type="text"
           name="name"
           value={state.name}
@@ -94,7 +94,7 @@ const ContactForm = () => {
               Phone
             </Wrap>
           }
-          handleChange={handleInputChange}
+          onChange={handleInputChange}
           type="tel"
           name="phone"
           value={state.phone}

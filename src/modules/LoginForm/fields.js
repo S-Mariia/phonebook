@@ -1,11 +1,4 @@
 const fields = {
-  name: {
-    type: 'text',
-    name: 'name',
-    required: true,
-    label: 'Name',
-    placeholder: 'Enter your name',
-  },
   email: {
     type: 'email',
     name: 'email',
@@ -19,13 +12,6 @@ const fields = {
     required: true,
     label: 'Password',
     placeholder: 'Create a password',
-  },
-  confirmedPassword: {
-    type: 'password',
-    name: 'confirmedPassword',
-    required: true,
-    label: 'Confirm your password',
-    placeholder: 'Enter created password',
   },
 };
 
