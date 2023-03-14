@@ -11,7 +11,7 @@ const fields = {
     name: 'password',
     required: true,
     label: 'Password',
-    placeholder: 'Create a password',
+    placeholder: 'Enter your password',
   },
 };
 

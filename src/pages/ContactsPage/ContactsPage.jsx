@@ -1,7 +1,13 @@
 import Contacts from 'modules/Contacts/Contacts';
 
+import { Wrapper } from './ContactsPage.styled';
+
 const ContactsPage = () => {
-  return <Contacts />;
+  return (
+    <Wrapper>
+      <Contacts />
+    </Wrapper>
+  );
 };
 
 export default ContactsPage;

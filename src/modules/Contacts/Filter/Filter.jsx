@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setFilter } from 'redux/filter/filter-slice';
 import { selectFilter } from 'redux/filter/filter-selectors';
 
-import { Paragraph, Input } from './Filter.styled';
+import TextField from 'shared/components/TextField/TextField';
 
 const Filter = () => {
   const filterValue = useSelector(selectFilter);
@@ -10,8 +10,8 @@ const Filter = () => {
 
   return (
     <>
-      <Paragraph>Find contacts by name</Paragraph>
-      <Input
+      <TextField
+        label="Find contacts by name"
         onChange={evt => dispatch(setFilter(evt.currentTarget.value))}
         type="text"
         name="filter"

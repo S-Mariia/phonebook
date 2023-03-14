@@ -2,17 +2,22 @@ import ContactForm from './ContactForm/ContactForm';
 import ContactList from './ContactList/ContactList';
 import Filter from './Filter/Filter';
 
-import { Title } from './Contacts.styled';
+import { Title, Wrap, Frame } from './Contacts.styled';
 
 const Contacts = () => {
   return (
-    <>
-      <ContactForm />
+    <Wrap>
+      <Frame>
+        <Title>Add contact</Title>
+        <ContactForm />
+      </Frame>
 
-      <Title>Contacts</Title>
-      <Filter />
-      <ContactList />
-    </>
+      <Frame>
+        <Title>Contacts</Title>
+        <Filter />
+        <ContactList />
+      </Frame>
+    </Wrap>
   );
 };
 

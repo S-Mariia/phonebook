@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import ContactItem from 'modules/Contacts/ContactItem/ContactItem';
 import Loader from 'shared/components/Loader/Loader';
-import { Table } from './ContactList.styled';
+import { Table, Container } from './ContactList.styled';
 
 import {
   selectIsLoading,
@@ -24,8 +24,7 @@ const ContactList = () => {
   }, [dispatch]);
 
   return (
-    <>
-      {isLoading && <Loader />}
+    <Container>
       {error !== null && <p>{error}</p>}
 
       <Table>
@@ -34,8 +33,9 @@ const ContactList = () => {
             <ContactItem key={contact.id} item={contact} />
           ))}
         </tbody>
+        {isLoading && <Loader yShift={-10} />}
       </Table>
-    </>
+    </Container>
   );
 };
 

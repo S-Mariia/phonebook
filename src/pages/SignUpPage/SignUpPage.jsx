@@ -4,6 +4,8 @@ import { selectIsLoggedIn } from 'redux/auth/auth-selectors';
 import SignUpForm from 'modules/SignUpForm/SignUpForm';
 import { signup } from 'redux/auth/auth-operations';
 
+import { PageWrap } from '../LoginPage/LoginPage.styled';
+
 const SignUpPage = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -13,7 +15,11 @@ const SignUpPage = () => {
     return isLoggedIn;
   };
 
-  return <SignUpForm onSubmit={handleSubmit} />;
+  return (
+    <PageWrap>
+      <SignUpForm onSubmit={handleSubmit} />
+    </PageWrap>
+  );
 };
 
 export default SignUpPage;

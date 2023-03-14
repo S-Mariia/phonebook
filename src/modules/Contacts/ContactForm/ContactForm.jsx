@@ -7,7 +7,7 @@ import { GrClose } from 'react-icons/gr';
 
 import Button from 'shared/components/Button/Button';
 import Loader from 'shared/components/Loader/Loader';
-import { Form, Wrap, ClearButton } from './ContactForm.styled';
+import { Form, Wrap, ClearButton, ButtonContainer } from './ContactForm.styled';
 
 import {
   selectContacts,
@@ -16,6 +16,8 @@ import {
 
 import { addContact } from 'redux/contacts/contacts-operations';
 import TextField from 'shared/components/TextField/TextField';
+
+import { toast } from 'react-toastify';
 
 const ContactForm = () => {
   const dispatch = useDispatch();
@@ -45,7 +47,7 @@ const ContactForm = () => {
     );
 
     if (alreadyInList) {
-      alert(`${state.name} is already in contacts`);
+      toast(`${state.name} is already in contacts`);
       return;
     }
 
@@ -112,10 +114,12 @@ const ContactForm = () => {
           <GrClose size={20} />
         </ClearButton>
       </Wrap>
-      <Button type="submit">
-        Add contact
-        {isLoading && <Loader size={30} shift="175" />}
-      </Button>
+      <ButtonContainer>
+        <Button type="submit">
+          Add contact
+          {isLoading && <Loader size={30} shift="175" />}
+        </Button>
+      </ButtonContainer>
     </Form>
   );
 };

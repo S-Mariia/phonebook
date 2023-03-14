@@ -3,10 +3,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectLoginError } from 'redux/auth/auth-selectors';
 
 import { resetLoginError } from 'redux/auth/auth-slice';
+import { ButtonContainer } from './LoginForm.styled';
 
 import TextField from 'shared/components/TextField/TextField';
 import PasswordInput from 'shared/components/PasswordInput/PasswordInput';
 import Button from 'shared/components/Button/Button';
+
+import { toast } from 'react-toastify';
 
 import fields from './fields';
 import initialState from './initialState';
@@ -39,7 +42,7 @@ const LoginForm = ({ onSubmit }) => {
   };
 
   return (
-    <>
+    <div>
       <form onSubmit={handleSubmit}>
         <TextField
           onChange={handleChange}
@@ -51,10 +54,12 @@ const LoginForm = ({ onSubmit }) => {
           value={state.password}
           {...fields.password}
         />
-        <Button type="submit">Log In</Button>
+        <ButtonContainer>
+          <Button type="submit">Log In</Button>
+        </ButtonContainer>
       </form>
-      {error && <p>{error}</p>}
-    </>
+      {error && dispatch(resetLoginError()) && toast(error)}
+    </div>
   );
 };
 

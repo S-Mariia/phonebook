@@ -8,6 +8,9 @@ import TextField from 'shared/components/TextField/TextField';
 import PasswordInput from 'shared/components/PasswordInput/PasswordInput';
 import Button from 'shared/components/Button/Button';
 
+import { ButtonContainer } from 'modules/LoginForm/LoginForm.styled';
+import { toast } from 'react-toastify';
+
 import fields from './fields';
 import initialState from './initialState';
 
@@ -33,7 +36,7 @@ const SignUpForm = ({ onSubmit }) => {
     evt.preventDefault();
 
     if (state.password !== state.confirmedPassword) {
-      alert('The password is incorrect');
+      toast('The password is incorrect');
       setState(prevState => ({ ...prevState, confirmedPassword: '' }));
       return;
     }
@@ -68,9 +71,11 @@ const SignUpForm = ({ onSubmit }) => {
           value={state.confirmedPassword}
           {...fields.confirmedPassword}
         />
-        <Button type="submit">Sign up</Button>
+        <ButtonContainer>
+          <Button type="submit">Sign up</Button>
+        </ButtonContainer>
       </form>
-      {error && <p>{error}</p>}
+      {error && dispatch(resetSignupError()) && toast(error)}
     </>
   );
 };

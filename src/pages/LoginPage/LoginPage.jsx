@@ -4,6 +4,8 @@ import { selectIsLoggedIn } from 'redux/auth/auth-selectors';
 import LoginForm from 'modules/LoginForm/LoginForm';
 import { login } from 'redux/auth/auth-operations';
 
+import { PageWrap } from './LoginPage.styled';
+
 const LoginPage = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -13,7 +15,11 @@ const LoginPage = () => {
     return isLoggedIn;
   };
 
-  return <LoginForm onSubmit={handleSubmit} />;
+  return (
+    <PageWrap>
+      <LoginForm onSubmit={handleSubmit} />
+    </PageWrap>
+  );
 };
 
 export default LoginPage;
