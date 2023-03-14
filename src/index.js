@@ -22,15 +22,3 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     </PersistGate>
   </Provider>
 );
-
-// ... normal setup, create store and persistor, import components etc.
-
-// const App = () => {
-//   return (
-//     <Provider store={store}>
-// <PersistGate loading={null} persistor={persistor}>
-//         <RootComponent />
-// </PersistGate>
-//     </Provider>
-//   );
-// };

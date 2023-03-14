@@ -10,7 +10,7 @@ import Loader from 'shared/components/Loader/Loader';
 
 import { Tr, Td, Btn } from './ContactItem.styled';
 
-const ContactItem = ({ item: { id, name, phone } }) => {
+const ContactItem = ({ item: { id, name, number } }) => {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsDeletingLoading);
   const deletedId = useRef(null);
@@ -18,7 +18,7 @@ const ContactItem = ({ item: { id, name, phone } }) => {
   return (
     <Tr>
       <Td>{name}</Td>
-      <Td>{phone}</Td>
+      <Td>{number}</Td>
       <Td>
         <Btn
           onClick={() => {

@@ -1,6 +1,9 @@
 import { lazy, Suspense } from 'react';
 
+import { Navigate } from 'react-router-dom';
 import { Routes, Route } from 'react-router-dom';
+import RestrictedRoute from 'shared/components/RestrictedRoute';
+import PrivateRoute from 'shared/components/PrivateRoute';
 
 import SharedLayout from './shared/components/SharedLayout/SharedLayout';
 const ContactsPage = lazy(() => import('./pages/ContactsPage/ContactsPage'));
@@ -13,17 +16,32 @@ const UserRoutes = () => {
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<div>HomePage</div>} />
-          <Route path="/register" element={<SignUpPage />} />
+          <Route
+            path="/register"
+            element={
+              <RestrictedRoute
+                component={<SignUpPage />}
+                redirectTo="/contacts"
+              />
+            }
+          />
           <Route
             path="/login"
             element={
-              <div>
-                <LoginPage />
-              </div>
+              <RestrictedRoute
+                component={<LoginPage />}
+                redirectTo="/contacts"
+              />
             }
           />
-          <Route path="/contacts" element={<ContactsPage />} />
+          <Route
+            path="/contacts"
+            element={
+              <PrivateRoute component={<ContactsPage />} redirectTo="/login" />
+            }
+          />
         </Route>
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Suspense>
   );

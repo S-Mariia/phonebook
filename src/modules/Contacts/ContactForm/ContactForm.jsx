@@ -24,7 +24,7 @@ const ContactForm = () => {
 
   const [state, setState] = useState({
     name: '',
-    phone: '',
+    number: '',
   });
 
   const handleInputChange = evt => {
@@ -49,11 +49,11 @@ const ContactForm = () => {
       return;
     }
 
-    dispatch(addContact({ name: state.name, phone: state.phone }));
+    dispatch(addContact({ name: state.name, number: state.number }));
 
     setState({
       name: '',
-      phone: '',
+      number: '',
     });
   };
 
@@ -96,8 +96,8 @@ const ContactForm = () => {
           }
           onChange={handleInputChange}
           type="tel"
-          name="phone"
-          value={state.phone}
+          name="number"
+          value={state.number}
           placeholder="Enter phone number"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
@@ -106,7 +106,7 @@ const ContactForm = () => {
         <ClearButton
           type="button"
           onClick={() => {
-            setState(prevState => ({ ...prevState, phone: '' }));
+            setState(prevState => ({ ...prevState, number: '' }));
           }}
         >
           <GrClose size={20} />

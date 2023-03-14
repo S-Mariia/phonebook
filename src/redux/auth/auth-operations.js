@@ -7,11 +7,10 @@ export const signup = createAsyncThunk(
   async (data, { rejectWithValue }) => {
     try {
       const result = await api.signup(data);
-      console.log('operation/signup');
-      console.log(result);
       return result;
     } catch (error) {
-      return rejectWithValue(error.responce);
+      return rejectWithValue('Such user has already existed');
+      // return rejectWithValue(error.message);
     }
   }
 );
@@ -21,11 +20,10 @@ export const login = createAsyncThunk(
   async (data, { rejectWithValue }) => {
     try {
       const result = await api.login(data);
-      console.log('operation/login');
-      console.log(result);
       return result;
     } catch (error) {
-      return rejectWithValue(error.responce);
+      return rejectWithValue('Login or password is invalid');
+      // return rejectWithValue(error.message);
     }
   }
 );
@@ -35,9 +33,8 @@ export const logout = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       await api.logout();
-      console.log('operation/logout');
     } catch (error) {
-      return rejectWithValue(error.responce);
+      return rejectWithValue('Something went wrong. Please reaload the page.');
     }
   }
 );
@@ -48,15 +45,13 @@ export const refreshUser = createAsyncThunk(
     try {
       const { token } = getState().auth;
       if (!token || token?.length === 0) {
-        return rejectWithValue('No token :(');
+        return rejectWithValue('');
       }
 
       const result = await api.refreshUser(token);
-      console.log('operation/refresh');
-      console.log(result);
       return result;
     } catch (error) {
-      return rejectWithValue(error.responce);
+      return rejectWithValue('Something went wrong. Please reaload the page.');
     }
   }
 );

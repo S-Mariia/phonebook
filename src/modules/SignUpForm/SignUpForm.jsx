@@ -1,4 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectSignupError } from 'redux/auth/auth-selectors';
+
+import { resetSignupError } from 'redux/auth/auth-slice';
 
 import TextField from 'shared/components/TextField/TextField';
 import PasswordInput from 'shared/components/PasswordInput/PasswordInput';
@@ -9,6 +13,13 @@ import initialState from './initialState';
 
 const SignUpForm = ({ onSubmit }) => {
   const [state, setState] = useState({ ...initialState });
+  const error = useSelector(selectSignupError);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(resetSignupError());
+  }, [dispatch]);
 
   const handleChange = evt => {
     const { name, value } = evt.currentTarget;
@@ -28,30 +39,39 @@ const SignUpForm = ({ onSubmit }) => {
     }
 
     const { name, email, password } = state;
-    onSubmit({ name, email, password });
-    setState({ ...initialState });
+    const signedUp = onSubmit({ name, email, password });
+    if (signedUp) {
+      setState({ ...initialState });
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <TextField onChange={handleChange} value={state.name} {...fields.name} />
-      <TextField
-        onChange={handleChange}
-        value={state.email}
-        {...fields.email}
-      />
-      <PasswordInput
-        onChange={handleChange}
-        value={state.password}
-        {...fields.password}
-      />
-      <PasswordInput
-        onChange={handleChange}
-        value={state.confirmedPassword}
-        {...fields.confirmedPassword}
-      />
-      <Button type="submit">Sign up</Button>
-    </form>
+    <>
+      <form onSubmit={handleSubmit}>
+        <TextField
+          onChange={handleChange}
+          value={state.name}
+          {...fields.name}
+        />
+        <TextField
+          onChange={handleChange}
+          value={state.email}
+          {...fields.email}
+        />
+        <PasswordInput
+          onChange={handleChange}
+          value={state.password}
+          {...fields.password}
+        />
+        <PasswordInput
+          onChange={handleChange}
+          value={state.confirmedPassword}
+          {...fields.confirmedPassword}
+        />
+        <Button type="submit">Sign up</Button>
+      </form>
+      {error && <p>{error}</p>}
+    </>
   );
 };
 

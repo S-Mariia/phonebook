@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const instance = axios.create({
+export const instance = axios.create({
   baseURL: 'https://connections-api.herokuapp.com',
 });
 
@@ -13,34 +13,22 @@ const clearAuthHeader = () => {
 };
 
 export const signup = async data => {
-  try {
-    const { data: result } = await instance.post('/users/signup', data);
-    console.log(result);
-    setAuthHeader(result.token);
-    return result;
-  } catch (error) {
-    console.log(error.message);
-  }
+  const { data: result } = await instance.post('/users/signup', data);
+  console.log(result);
+  setAuthHeader(result.token);
+  return result;
 };
 
 export const login = async data => {
-  try {
-    const { data: result } = await instance.post('/users/login', data);
-    console.log(result);
-    setAuthHeader(result.token);
-    return result;
-  } catch (error) {
-    console.log(error.message);
-  }
+  const { data: result } = await instance.post('/users/login', data);
+  console.log(result);
+  setAuthHeader(result.token);
+  return result;
 };
 
 export const logout = async data => {
-  try {
-    await instance.post('/users/logout');
-    clearAuthHeader();
-  } catch (error) {
-    console.log(error.message);
-  }
+  await instance.post('/users/logout');
+  clearAuthHeader();
 };
 
 export const refreshUser = async token => {

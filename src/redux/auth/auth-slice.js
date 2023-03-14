@@ -6,18 +6,30 @@ const initialState = {
   user: {},
   token: '',
   isLoggedIn: false,
+  isRefreshing: false,
   isLoading: false,
-  error: null,
+  refreshError: null,
+  signupError: null,
+  loginError: null,
+  logoutError: null,
 };
 
 const authSlice = createSlice({
   name: 'auth',
   initialState,
+  reducers: {
+    resetSignupError: state => {
+      state.signupError = null;
+    },
+    resetLoginError: state => {
+      state.loginError = null;
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(signup.pending, state => {
         state.isLoading = true;
-        state.error = null;
+        state.signupError = null;
       })
       .addCase(signup.fulfilled, (state, { payload }) => {
         state.isLoading = false;
@@ -27,11 +39,11 @@ const authSlice = createSlice({
       })
       .addCase(signup.rejected, (state, { payload }) => {
         state.isLoading = false;
-        state.error = payload;
+        state.signupError = payload;
       })
       .addCase(login.pending, state => {
         state.isLoading = true;
-        state.error = null;
+        state.loginError = null;
       })
       .addCase(login.fulfilled, (state, { payload }) => {
         state.isLoading = false;
@@ -41,11 +53,11 @@ const authSlice = createSlice({
       })
       .addCase(login.rejected, (state, { payload }) => {
         state.isLoading = false;
-        state.error = payload;
+        state.loginError = payload;
       })
       .addCase(logout.pending, state => {
         state.isLoading = true;
-        state.error = null;
+        state.logoutError = null;
       })
       .addCase(logout.fulfilled, state => {
         state.isLoading = false;
@@ -55,23 +67,23 @@ const authSlice = createSlice({
       })
       .addCase(logout.rejected, (state, { payload }) => {
         state.isLoading = false;
-        state.error = payload;
+        state.logoutError = payload;
       })
       .addCase(refreshUser.pending, state => {
-        state.isLoading = true;
-        state.error = null;
+        state.isRefreshing = true;
+        state.refreshError = null;
       })
       .addCase(refreshUser.fulfilled, (state, { payload }) => {
-        console.log(payload);
-        state.isLoading = false;
+        state.isRefreshing = false;
         state.user = payload;
         state.isLoggedIn = true;
       })
       .addCase(refreshUser.rejected, (state, { payload }) => {
-        state.isLoading = false;
-        state.error = payload;
+        state.isRefreshing = false;
+        state.refreshError = payload;
       });
   },
 });
 
+export const { resetSignupError, resetLoginError } = authSlice.actions;
 export default authSlice.reducer;
