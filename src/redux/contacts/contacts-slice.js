@@ -31,7 +31,7 @@ const addContactFulfilledReducer = (state, { payload }) => {
 const deleteContactFulfilledReducer = (state, { payload }) => {
   state.isDeletingLoading = false;
   state.error = null;
-  state.items = state.items.filter(({ id }) => id !== payload.id);
+  state.items = state.items.filter(({ _id }) => _id !== payload);
 };
 
 const fetchContactsPendingReducer = state => {

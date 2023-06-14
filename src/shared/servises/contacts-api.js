@@ -6,12 +6,11 @@ export const getAllContacts = async () => {
 };
 
 export const deleteContact = async id => {
-  const { data } = await instance.delete(`/contacts/${id}`);
-  return data;
+  await instance.delete(`/contacts/${id}`);
+  return id;
 };
 
-export const addContact = async ({ name, number }) => {
-  const { data } = await instance.post('/contacts', { name, number });
-  console.log(data);
+export const addContact = async ({ name, phone }) => {
+  const { data } = await instance.post('/contacts', { name, phone });
   return data;
 };

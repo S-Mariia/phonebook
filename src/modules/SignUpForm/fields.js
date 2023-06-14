@@ -19,6 +19,7 @@ const fields = {
     required: true,
     label: 'Password',
     placeholder: 'Create a password',
+    autoComplete: 'off',
   },
   confirmedPassword: {
     type: 'password',
@@ -26,6 +27,7 @@ const fields = {
     required: true,
     label: 'Confirm your password',
     placeholder: 'Enter created password',
+    autoComplete: 'off',
   },
 };
 

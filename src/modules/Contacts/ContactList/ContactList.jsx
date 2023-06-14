@@ -30,7 +30,7 @@ const ContactList = () => {
       <Table>
         <tbody>
           {filteredContacts.map(contact => (
-            <ContactItem key={contact.id} item={contact} />
+            <ContactItem key={contact._id} item={contact} />
           ))}
         </tbody>
         {isLoading && <Loader yShift={-10} />}
